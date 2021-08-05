@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31424.327
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SevenRed", "SevenRed\SevenRed.csproj", "{2169552E-44A7-491A-955B-E1DA825A68D9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SevenRedGame", "SevenRedGame\SevenRedGame.csproj", "{0C6A1836-42D4-4966-B8B9-FE414BDB2956}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2169552E-44A7-491A-955B-E1DA825A68D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2169552E-44A7-491A-955B-E1DA825A68D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2169552E-44A7-491A-955B-E1DA825A68D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2169552E-44A7-491A-955B-E1DA825A68D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C6A1836-42D4-4966-B8B9-FE414BDB2956}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C6A1836-42D4-4966-B8B9-FE414BDB2956}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C6A1836-42D4-4966-B8B9-FE414BDB2956}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C6A1836-42D4-4966-B8B9-FE414BDB2956}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AB5FC44E-790A-4C3C-AE52-C0CAFA650C30}
+	EndGlobalSection
+EndGlobal

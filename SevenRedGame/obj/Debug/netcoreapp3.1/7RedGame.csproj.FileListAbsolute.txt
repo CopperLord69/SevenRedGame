@@ -1,0 +1,16 @@
+C:\Users\user\source\repos\7RedGame\7RedGame\bin\Debug\netcoreapp3.1\7RedGame.exe
+C:\Users\user\source\repos\7RedGame\7RedGame\bin\Debug\netcoreapp3.1\7RedGame.deps.json
+C:\Users\user\source\repos\7RedGame\7RedGame\bin\Debug\netcoreapp3.1\7RedGame.runtimeconfig.json
+C:\Users\user\source\repos\7RedGame\7RedGame\bin\Debug\netcoreapp3.1\7RedGame.runtimeconfig.dev.json
+C:\Users\user\source\repos\7RedGame\7RedGame\bin\Debug\netcoreapp3.1\7RedGame.dll
+C:\Users\user\source\repos\7RedGame\7RedGame\bin\Debug\netcoreapp3.1\7RedGame.pdb
+C:\Users\user\source\repos\7RedGame\7RedGame\obj\Debug\netcoreapp3.1\7RedGame.csproj.AssemblyReference.cache
+C:\Users\user\source\repos\7RedGame\7RedGame\obj\Debug\netcoreapp3.1\7RedGame.AssemblyInfoInputs.cache
+C:\Users\user\source\repos\7RedGame\7RedGame\obj\Debug\netcoreapp3.1\7RedGame.AssemblyInfo.cs
+C:\Users\user\source\repos\7RedGame\7RedGame\obj\Debug\netcoreapp3.1\7RedGame.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\7RedGame\7RedGame\obj\Debug\netcoreapp3.1\7RedGame.dll
+C:\Users\user\source\repos\7RedGame\7RedGame\obj\Debug\netcoreapp3.1\7RedGame.pdb
+C:\Users\user\source\repos\7RedGame\7RedGame\obj\Debug\netcoreapp3.1\7RedGame.genruntimeconfig.cache
+C:\Users\user\source\repos\7RedGame\7RedGame\bin\Debug\netcoreapp3.1\SevenRed.dll
+C:\Users\user\source\repos\7RedGame\7RedGame\bin\Debug\netcoreapp3.1\SevenRed.pdb
+C:\Users\user\source\repos\7RedGame\7RedGame\obj\Debug\netcoreapp3.1\7RedGame.csproj.CopyComplete

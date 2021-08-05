@@ -1,0 +1,9 @@
+C:\Users\user\source\repos\7RedGame\SevenRed\bin\Debug\netcoreapp3.1\SevenRed.deps.json
+C:\Users\user\source\repos\7RedGame\SevenRed\bin\Debug\netcoreapp3.1\SevenRed.dll
+C:\Users\user\source\repos\7RedGame\SevenRed\bin\Debug\netcoreapp3.1\SevenRed.pdb
+C:\Users\user\source\repos\7RedGame\SevenRed\obj\Debug\netcoreapp3.1\SevenRed.csproj.AssemblyReference.cache
+C:\Users\user\source\repos\7RedGame\SevenRed\obj\Debug\netcoreapp3.1\SevenRed.AssemblyInfoInputs.cache
+C:\Users\user\source\repos\7RedGame\SevenRed\obj\Debug\netcoreapp3.1\SevenRed.AssemblyInfo.cs
+C:\Users\user\source\repos\7RedGame\SevenRed\obj\Debug\netcoreapp3.1\SevenRed.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\7RedGame\SevenRed\obj\Debug\netcoreapp3.1\SevenRed.dll
+C:\Users\user\source\repos\7RedGame\SevenRed\obj\Debug\netcoreapp3.1\SevenRed.pdb
