@@ -1,4 +1,6 @@
-﻿namespace SevenRed
+﻿using System.Text.RegularExpressions;
+
+namespace SevenRed
 {
     public class Card
     {
@@ -11,7 +13,17 @@
         public Card(string cardInfo)
         {
             var parameters = cardInfo.Split(' ');
-            Value = int.Parse(parameters[0]);
+            if(parameters.Length < 1)
+            {
+                return;
+            }
+            if (int.TryParse(parameters[0], out int value)){
+                Value = value;
+            }
+            else
+            {
+                Value = 1;
+            }
             Color = ParseColor(parameters[1]);
         }
 
@@ -60,7 +72,7 @@
                     }
                 default:
                     {
-                        return CardColor.Red;
+                        return CardColor.Purple;
                     }
             }
         }

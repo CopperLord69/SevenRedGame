@@ -19,15 +19,25 @@ namespace _7RedGame
 
         private static List<Card> GenerateCardCombo(int combinationNumber)
         {
-            var comboCount = int.Parse(Console.ReadLine());
-            List<Card> comboCards = new List<Card>();
-            for (int i = 0; i < comboCount; i++)
+            Console.WriteLine("Enter combination count");
+            if(int.TryParse(Console.ReadLine(), out int comboCount))
             {
-                var cardString = Console.ReadLine();
-                Card card = new Card(cardString);
-                game.AddCard(card, combinationNumber);
+                
+                List<Card> comboCards = new List<Card>();
+                for (int i = 0; i < comboCount; i++)
+                {
+                    Console.WriteLine("Enter card");
+                    var cardString = Console.ReadLine();
+                    Card card = new Card(cardString);
+                    game.AddCard(card, combinationNumber);
+                }
+                return comboCards;
             }
-            return comboCards;
+            else
+            {
+                return GenerateCardCombo(combinationNumber);
+            }
+            
         }
     }
 }
