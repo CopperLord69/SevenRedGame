@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Text.RegularExpressions;
 
 namespace SevenRed
 {
@@ -13,21 +13,16 @@ namespace SevenRed
         public Card(string cardInfo)
         {
             var parameters = cardInfo.Split(' ');
-            if (parameters.Length != 2)
+            if(parameters.Length < 1)
             {
-                throw new ArgumentException("Card parameters number are not 2");
+                return;
             }
-            if (int.TryParse(parameters[0], out int value))
-            {
-                if (value > 7 || value < 1)
-                {
-                    throw new ArgumentException("Invalid card value");
-                }
+            if (int.TryParse(parameters[0], out int value)){
                 Value = value;
             }
             else
             {
-                throw new FormatException("Card value is not a number");
+                Value = 1;
             }
             Color = ParseColor(parameters[1]);
         }
@@ -45,31 +40,41 @@ namespace SevenRed
 
         private CardColor ParseColor(string value)
         {
-            value = value.ToUpper();
-            foreach (var val in Enum.GetValues(typeof(CardColor)))
+            switch (value.ToUpper())
             {
-                var enumValue = (CardColor)val;
-
-                if (enumValue.GetDescription() == value)
-                {
-                    return enumValue;
-                }
+                case "R":
+                    {
+                        return CardColor.Red;
+                    }
+                case "O":
+                    {
+                        return CardColor.Orange;
+                    }
+                case "Y":
+                    {
+                        return CardColor.Yellow;
+                    }
+                case "G":
+                    {
+                        return CardColor.Green;
+                    }
+                case "C":
+                    {
+                        return CardColor.Cyan;
+                    }
+                case "B":
+                    {
+                        return CardColor.Blue;
+                    }
+                case "P":
+                    {
+                        return CardColor.Purple;
+                    }
+                default:
+                    {
+                        return CardColor.Purple;
+                    }
             }
-            throw new Exception("Color with given name does not exist");
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (obj is Card card)
-            {
-                return card.Color == Color && card.Value == Value;
-            }
-            return false;
-        }
-
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(Color, Value);
         }
     }
 }

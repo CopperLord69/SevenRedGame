@@ -1,84 +1,43 @@
 ﻿using SevenRed;
 using System;
+using System.Collections.Generic;
 
 namespace _7RedGame
 {
     class Program
     {
-        private static Game game;
+        private static Game game = new Game(); 
 
         static void Main(string[] args)
         {
-            try
-            {
-                Console.WriteLine("Enter card combinations count");
-                int combinationsCount;
-                while (!int.TryParse(Console.ReadLine(), out combinationsCount) || combinationsCount < 2)
-                {
-                    Console.WriteLine("Enter card combinations count");
-                }
-                game = new Game(combinationsCount);
-                GenerateCombinations(combinationsCount);
-                var winningCombo = game.GetWinningCombination();
-                Console.WriteLine($"{  winningCombo.Name } combo won!");
-                Console.WriteLine(game.GetHighestCardInCombination(winningCombo).ToString());
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            GenerateCardCombo(1);
+            GenerateCardCombo(2);
+            var winningCard = game.GetWinningCombination();
+            Console.WriteLine($"{(winningCard.Value == 1 ? "First" : "Second") } combo won!");
+            Console.WriteLine(winningCard.Key.ToString());
         }
 
-        private static void GenerateCombinations(int count)
-        {
-            for (int i = 0; i < count; i++)
-            {
-                Console.WriteLine("Enter combination name");
-                var name = Console.ReadLine();
-                GenerateCardCombo(name);
-            }
-        }
-
-        private static void GenerateCardCombo(string name)
+        private static List<Card> GenerateCardCombo(int combinationNumber)
         {
             Console.WriteLine("Enter combination count");
-            if (int.TryParse(Console.ReadLine(), out int comboCount))
+            if(int.TryParse(Console.ReadLine(), out int comboCount))
             {
-                if (game.CardSetsCapacity == 0)
-                {
-                    game.CardSetsCapacity = comboCount;
-                }
-                else if (comboCount != game.CardSetsCapacity)
-                {
-                    throw new Exception("Invalid card count");
-                }
-                if (comboCount < 1)
-                {
-                    throw new Exception("Card number in combination is less than one");
-                }
-                CardSet set = new CardSet(comboCount, name);
+                
+                List<Card> comboCards = new List<Card>();
                 for (int i = 0; i < comboCount; i++)
                 {
                     Console.WriteLine("Enter card");
-                    string cardProperties = Console.ReadLine();
-                    Card card = new Card(cardProperties);
-                    if (game.IsCardAvailable(card))
-                    {
-                        game.SetCardNotAvailable(card);
-                        set.AddCard(card);
-                    }
-                    else
-                    {
-                        throw new Exception("This card is not available");
-                    }
+                    var cardString = Console.ReadLine();
+                    Card card = new Card(cardString);
+                    game.AddCard(card, combinationNumber);
                 }
-                game.AddCardSet(set);
+                return comboCards;
             }
             else
             {
-                throw new FormatException("Invalid number format");
+                return GenerateCardCombo(combinationNumber);
             }
-
+            
         }
     }
 }
