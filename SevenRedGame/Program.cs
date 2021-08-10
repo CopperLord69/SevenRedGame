@@ -1,4 +1,4 @@
-﻿using SevenRed;
+using SevenRed;
 using System;
 
 namespace _7RedGame
