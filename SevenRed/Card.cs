@@ -1,4 +1,6 @@
-﻿namespace SevenRed
+﻿using System;
+
+namespace SevenRed
 {
     public class Card
     {
@@ -11,7 +13,22 @@
         public Card(string cardInfo)
         {
             var parameters = cardInfo.Split(' ');
-            Value = int.Parse(parameters[0]);
+            if (parameters.Length != 2)
+            {
+                throw new ArgumentException("Card parameters number are not 2");
+            }
+            if (int.TryParse(parameters[0], out int value))
+            {
+                if (value > 7 || value < 1)
+                {
+                    throw new ArgumentException("Invalid card value");
+                }
+                Value = value;
+            }
+            else
+            {
+                throw new FormatException("Card value is not a number");
+            }
             Color = ParseColor(parameters[1]);
         }
 
@@ -28,41 +45,31 @@
 
         private CardColor ParseColor(string value)
         {
-            switch (value.ToUpper())
+            value = value.ToUpper();
+            foreach (var val in Enum.GetValues(typeof(CardColor)))
             {
-                case "R":
-                    {
-                        return CardColor.Red;
-                    }
-                case "O":
-                    {
-                        return CardColor.Orange;
-                    }
-                case "Y":
-                    {
-                        return CardColor.Yellow;
-                    }
-                case "G":
-                    {
-                        return CardColor.Green;
-                    }
-                case "C":
-                    {
-                        return CardColor.Cyan;
-                    }
-                case "B":
-                    {
-                        return CardColor.Blue;
-                    }
-                case "P":
-                    {
-                        return CardColor.Purple;
-                    }
-                default:
-                    {
-                        return CardColor.Red;
-                    }
+                var enumValue = (CardColor)val;
+
+                if (enumValue.GetDescription() == value)
+                {
+                    return enumValue;
+                }
             }
+            throw new Exception("Color with given name does not exist");
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Card card)
+            {
+                return card.Color == Color && card.Value == Value;
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Color, Value);
         }
     }
 }
