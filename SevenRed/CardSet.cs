@@ -7,6 +7,7 @@ namespace SevenRed
     {
         public string Name { get; private set; }
         public List<Card> Cards { get; private set; }
+        public Card HighestCard { get; set; }
 
         public CardSet(int cardsCount, string name)
         {
@@ -18,14 +19,11 @@ namespace SevenRed
         {
             if (Cards.Contains(card))
             {
-                throw new System.Exception("Card is already is in the set");
+                throw new System.ArgumentException("Card is already is in the set");
             }
             Cards.Add(card);
         }
 
-        public Card GetHighestCard(IComparer<Card> comparer)
-        {
-            return Cards.OrderBy(c => c, comparer).Last();
-        }
+
     }
 }

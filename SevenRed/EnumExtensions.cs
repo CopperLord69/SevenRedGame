@@ -6,19 +6,19 @@ namespace SevenRed
 {
     public static class EnumExtensions
     {
-        public static string GetDescription(this Enum @enum)
+        public static string GetDescription(this Enum enumeration)
         {
-            Type genericEnumType = @enum.GetType();
-            MemberInfo[] memberInfo = genericEnumType.GetMember(@enum.ToString());
+            Type genericEnumType = enumeration.GetType();
+            MemberInfo[] memberInfo = genericEnumType.GetMember(enumeration.ToString());
             if ((memberInfo != null && memberInfo.Length > 0))
             {
-                var _Attribs = memberInfo[0].GetCustomAttributes(typeof(System.ComponentModel.DescriptionAttribute), false);
-                if ((_Attribs != null && _Attribs.Length > 0))
+                var attributes = memberInfo[0].GetCustomAttributes(typeof(System.ComponentModel.DescriptionAttribute), false);
+                if ((attributes != null && attributes.Length > 0))
                 {
-                    return ((System.ComponentModel.DescriptionAttribute)_Attribs.ElementAt(0)).Description;
+                    return ((System.ComponentModel.DescriptionAttribute)attributes.ElementAt(0)).Description;
                 }
             }
-            return @enum.ToString();
+            return enumeration.ToString();
         }
     }
 }

@@ -4,6 +4,9 @@ namespace SevenRed
 {
     public class Card
     {
+        private const int cardMinValue = 1;
+        private const int cardMaxValue = 7;
+
         public CardColor Color { get; private set; }
 
         public int Value { get; private set; }
@@ -15,11 +18,11 @@ namespace SevenRed
             var parameters = cardInfo.Split(' ');
             if (parameters.Length != 2)
             {
-                throw new ArgumentException("Card parameters number are not 2");
+                throw new ArgumentException("Card parameters must be defined with format {number color}, for example, '7 R', '3 p'");
             }
             if (int.TryParse(parameters[0], out int value))
             {
-                if (value > 7 || value < 1)
+                if (value > cardMaxValue || value < cardMinValue)
                 {
                     throw new ArgumentException("Invalid card value");
                 }
@@ -55,7 +58,7 @@ namespace SevenRed
                     return enumValue;
                 }
             }
-            throw new Exception("Color with given name does not exist");
+            throw new ArgumentException("Color with given name does not exist");
         }
 
         public override bool Equals(object obj)

@@ -1,15 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SevenRed
 {
     public class Game
     {
-        public int CardSetsCapacity { get; set; } = 0;
-
         private List<CardSet> cardSets;
         private CardComparer comparer = new CardComparer();
-        private List<Card> existingCards = new List<Card>(49);
+        private List<Card> cardsInUse = new List<Card>(49);
 
         public Game(int combinationsCount)
         {
@@ -23,28 +22,23 @@ namespace SevenRed
 
         public void AddCardSet(CardSet set)
         {
+            set.HighestCard = set.Cards.OrderBy(card => card, comparer).Last();
             cardSets.Add(set);
         }
 
-        public bool IsCardAvailable(Card card)
+        public void AddCardToSet(Card card, CardSet set)
         {
-            return !existingCards.Contains(card);
-        }
-
-        public void SetCardNotAvailable(Card card)
-        {
-            existingCards.Add(card);
+            if (cardsInUse.Contains(card))
+            {
+                throw new ArgumentException("Card is already in use");
+            }
+            set.AddCard(card);
         }
 
         public CardSet GetWinningCombination()
         {
-            var winningSet = cardSets.OrderBy(set => set.GetHighestCard(comparer), comparer).Last();
+            var winningSet = cardSets.OrderBy(set => set.HighestCard, comparer).Last();
             return winningSet;
-        }
-
-        public Card GetHighestCardInCombination(CardSet set)
-        {
-            return set.GetHighestCard(comparer);
         }
     }
 }
