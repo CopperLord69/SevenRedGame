@@ -1,22 +1,41 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SevenRed
 {
     public class Game
     {
-        private Dictionary<Card, int> cards = new Dictionary<Card, int>();
+        public IComparer<Card> CardComparer { get; private set; }
+        private List<CardSet> cardSets;
 
-        public void AddCard(Card card, int combinationNumber)
+        public Game(int combinationsCount, IComparer<Card> comparer)
         {
-            cards.Add(card, combinationNumber);
+            cardSets = new List<CardSet>(combinationsCount);
+            CardComparer = comparer;
         }
 
-        public KeyValuePair<Card, int> GetWinningCombination()
+        public void AddCardSet(CardSet set)
         {
-            CardComparer comparer = new CardComparer();
-            var winning = cards.OrderBy(c => c,comparer).Last();
-            return winning;
+            cardSets.Add(set);
+        }
+
+        public void AddCardToSet(Card card, CardSet set)
+        {
+            foreach (var cardSet in cardSets)
+            {
+                if (cardSet.Cards.Contains(card))
+                {
+                    throw new ArgumentException("Card is already in use");
+                }
+            }
+            set.AddCard(card);
+        }
+
+        public CardSet GetWinningCombination()
+        {
+            var winningSet = cardSets.OrderBy(set => set.HighestCard, CardComparer).Last();
+            return winningSet;
         }
     }
 }

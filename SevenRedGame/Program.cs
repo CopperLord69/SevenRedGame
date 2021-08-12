@@ -1,43 +1,61 @@
-﻿using SevenRed;
+using SevenRed;
 using System;
-using System.Collections.Generic;
 
 namespace _7RedGame
 {
     class Program
     {
-        private static Game game = new Game(); 
+        private static Game game;
 
         static void Main(string[] args)
         {
-            GenerateCardCombo(1);
-            GenerateCardCombo(2);
-            var winningCard = game.GetWinningCombination();
-            Console.WriteLine($"{(winningCard.Value == 1 ? "First" : "Second") } combo won!");
-            Console.WriteLine(winningCard.Key.ToString());
+            try
+            {
+                Console.WriteLine("Enter card combinations count");
+                int combinationsCount;
+                while (!int.TryParse(Console.ReadLine(), out combinationsCount) || combinationsCount < 2)
+                {
+                    Console.WriteLine("Enter card combinations count");
+                }
+                Console.WriteLine("Enter card combinations capacity");
+                int combinationCapacity;
+                while (!int.TryParse(Console.ReadLine(), out combinationCapacity) || combinationCapacity < 1)
+                {
+                    Console.WriteLine("Enter card combinations capacity");
+                }
+                game = new Game(combinationsCount, new CardComparer());
+                GenerateCombinations(combinationsCount, combinationCapacity);
+                var winningCombo = game.GetWinningCombination();
+                Console.WriteLine($"{winningCombo.Name} combo won!");
+                Console.WriteLine(winningCombo.HighestCard.ToString());
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
-        private static List<Card> GenerateCardCombo(int combinationNumber)
+        private static void GenerateCombinations(int count, int combinationCapacity)
         {
-            Console.WriteLine("Enter combination count");
-            if(int.TryParse(Console.ReadLine(), out int comboCount))
+            for (int i = 0; i < count; i++)
             {
-                
-                List<Card> comboCards = new List<Card>();
-                for (int i = 0; i < comboCount; i++)
-                {
-                    Console.WriteLine("Enter card");
-                    var cardString = Console.ReadLine();
-                    Card card = new Card(cardString);
-                    game.AddCard(card, combinationNumber);
-                }
-                return comboCards;
+                Console.WriteLine("Enter combination name");
+                var name = Console.ReadLine();
+                GenerateCardCombo(name, combinationCapacity);
             }
-            else
+        }
+
+        private static void GenerateCardCombo(string name, int combinationCapacity)
+        {
+            CardSet set = new CardSet(combinationCapacity, name, game.CardComparer);
+            for (int i = 0; i < combinationCapacity; i++)
             {
-                return GenerateCardCombo(combinationNumber);
+                Console.WriteLine("Enter card");
+                string cardProperties = Console.ReadLine();
+                Card card = new Card(cardProperties);
+                game.AddCardToSet(card, set);
             }
-            
+            game.AddCardSet(set);
         }
     }
 }
