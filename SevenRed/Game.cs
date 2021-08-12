@@ -6,38 +6,35 @@ namespace SevenRed
 {
     public class Game
     {
+        public IComparer<Card> CardComparer { get; private set; }
         private List<CardSet> cardSets;
-        private CardComparer comparer = new CardComparer();
-        private List<Card> cardsInUse = new List<Card>(49);
 
-        public Game(int combinationsCount)
+        public Game(int combinationsCount, IComparer<Card> comparer)
         {
             cardSets = new List<CardSet>(combinationsCount);
-        }
-
-        public Game()
-        {
-            cardSets = new List<CardSet>();
+            CardComparer = comparer;
         }
 
         public void AddCardSet(CardSet set)
         {
-            set.HighestCard = set.Cards.OrderBy(card => card, comparer).Last();
             cardSets.Add(set);
         }
 
         public void AddCardToSet(Card card, CardSet set)
         {
-            if (cardsInUse.Contains(card))
+            foreach (var cardSet in cardSets)
             {
-                throw new ArgumentException("Card is already in use");
+                if (cardSet.Cards.Contains(card))
+                {
+                    throw new ArgumentException("Card is already in use");
+                }
             }
             set.AddCard(card);
         }
 
         public CardSet GetWinningCombination()
         {
-            var winningSet = cardSets.OrderBy(set => set.HighestCard, comparer).Last();
+            var winningSet = cardSets.OrderBy(set => set.HighestCard, CardComparer).Last();
             return winningSet;
         }
     }

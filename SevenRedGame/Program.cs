@@ -23,7 +23,7 @@ namespace _7RedGame
                 {
                     Console.WriteLine("Enter card combinations capacity");
                 }
-                game = new Game(combinationsCount);
+                game = new Game(combinationsCount, new CardComparer());
                 GenerateCombinations(combinationsCount, combinationCapacity);
                 var winningCombo = game.GetWinningCombination();
                 Console.WriteLine($"{winningCombo.Name} combo won!");
@@ -47,7 +47,7 @@ namespace _7RedGame
 
         private static void GenerateCardCombo(string name, int combinationCapacity)
         {
-            CardSet set = new CardSet(combinationCapacity, name);
+            CardSet set = new CardSet(combinationCapacity, name, game.CardComparer);
             for (int i = 0; i < combinationCapacity; i++)
             {
                 Console.WriteLine("Enter card");

@@ -7,12 +7,14 @@ namespace SevenRed
     {
         public string Name { get; private set; }
         public List<Card> Cards { get; private set; }
-        public Card HighestCard { get; set; }
+        public Card HighestCard { get => Cards.OrderBy(c => c,comparer).Last(); }
+        private IComparer<Card> comparer;
 
-        public CardSet(int cardsCount, string name)
+        public CardSet(int cardsCount, string name, IComparer<Card> comparer)
         {
             Cards = new List<Card>(cardsCount);
             Name = name;
+            this.comparer = comparer;
         }
 
         public void AddCard(Card card)
@@ -23,7 +25,5 @@ namespace SevenRed
             }
             Cards.Add(card);
         }
-
-
     }
 }
